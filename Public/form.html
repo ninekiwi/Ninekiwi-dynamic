@@ -39,11 +39,11 @@
                     <div class="container">
                         <form name="inspection-form" id="inspectionForm">
                                     <div class="item">
-                                        <div style="background-color: #00065f; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 9px; margin-top: 9px;">
-                                            <h1 style="color: #ffffff; background-color: #00065f; padding-top: 9px;">Construction Inspection and Survey Form</h1>
+                                        <div style="background-color:#45a049; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 9px; margin-top: 9px;">
+                                            <h1 style="color: #ffffff; padding-top: 9px;">Construction Inspection and Survey Form</h1>
                                             <br>
                                         </div>
-                                        <div class="item" style="background-color: #ffffff; ">
+                                        <div class="item" style="background-color: #45a049; ">
                                             <ul>
                                                 <a href="Forminfo.html"><h4> Click here to access detail form and learn more about the various terminologies used in it.</h4></a>
 </li>
@@ -71,8 +71,12 @@
                                             <br>
                                             <h1 style="color: #aaf2ff;"><b>General Notes</b></h1>
                                             <h3 style="color: #b3ff84;">Tenant Protection Inspection</h3>
-                                            <input type="file" id="tenantProtection" name="tenantProtection-images" accept="image/*" multiple>
-                                            <div id="imagePreviews" style="display: flex; flex-wrap: wrap;">please capyure square pics</div>
+                                            <div class="file-upload-container">
+                                                <label for="tenantProtection">Please Choose all Images at once:</label>
+                                                <div class="file-upload">
+                                                  Images :
+                                                  <input type="file" id="tenantProtection" name="tenantProtection-images" accept="image/*" multiple>
+                                            <div id="imagePreviews" style="display: flex; flex-wrap: wrap;"></div></div></div>
                                             <textarea id="tenantProtection" name="tenantProtection" placeholder="Description"></textarea>
                                             <br>
                                         </div>
