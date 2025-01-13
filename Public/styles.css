@@ -1,0 +1,536 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #fff;
+    background: #1e1e1e;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #00aaff, #004d99);
+    color: #fff;
+    padding: 2rem 0;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.header-icon {
+    width: 120px;
+    height: auto;
+    border-radius: 50%;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+header p {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+/* Navbar */
+nav {
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 0.5rem;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #00aaff;
+    transform: scale(1.1);
+}
+
+/* Main Content */
+main {
+    background: url('bg.jpg') no-repeat center center;
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-attachment: fixed; /* Keeps the background image fixed when scrolling */
+    color: #fff;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+}
+
+/* Service Section */
+section {
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.7); /* Slightly darker for contrast */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 1200px;
+    width: 90%;
+    text-align: center;
+}
+
+section h2 {
+    border-bottom: 2px solid #00aaff;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: #00aaff;
+}
+
+.service-box {
+    margin: 2rem 0;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1); /* Slightly transparent white for contrast */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.service-box h3 {
+    font-size: 1.8rem;
+    color: #00aaff;
+    margin-bottom: 1rem;
+}
+
+.service-box p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.service-button {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: #00aaff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.service-button:hover {
+    background: #0099cc;
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(135deg, #004d99, #00aaff);
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.email-button {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1.5rem;
+    background: #00aaff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.email-button:hover {
+    background: #0099cc;
+    transform: scale(1.05);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 0.5rem 0;
+    }
+
+    header, footer {
+        padding: 1rem;
+    }
+
+    section {
+        flex-direction: column; /* Stacks image and text vertically on smaller screens */
+        align-items: center;
+        gap: 1rem;
+    }
+
+    section img {
+        max-width: 80%; /* Adjusts image size on smaller screens */
+    }
+
+    section h2 {
+        font-size: 1.5rem;
+    }
+
+    section p {
+        font-size: 0.9rem;
+    }
+
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    nav ul li a {
+        font-size: 0.9rem;
+    }
+
+    footer p {
+        font-size: 0.9rem;
+    }
+
+}
+.copy {
+    display: block;
+    margin-top: 1rem;
+    padding: 0.5rem 1.5rem;
+    background: #1b2a32;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 2px;
+    padding-bottom: 9px;
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    height: auto;
+    text-align: left;
+}
+
+form label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+form input, form textarea, form button {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+}
+
+form input, form textarea {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+form button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+
+.form-container {
+    background: rgba(69, 69, 69, 0.9);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    align-content: center;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group input[type="radio"] {
+    width: auto;
+    margin-right: 0.5rem;
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Container styling */
+.pdf-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+/* Heading styling */
+.pdf-container h3 {
+    text-align: center;
+    color: #03a900;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 20px;
+}
+
+/* Share buttons styling */
+.share-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.share-btn {
+    background-color: #03a900;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.share-btn:hover {
+    background-color: #028a00;
+}
+
+/* Specific button colors */
+.whatsapp {
+    background-color: #25D366;
+}
+
+.sms {
+    background-color: #34B7F1;
+}
+
+.email {
+    background-color: #4285F4;
+}
+
+.bluetooth {
+    background-color: #1E88E5;
+}
+
+/* Specific button hover effects */
+.whatsapp:hover {
+    background-color: #1ebe57;
+}
+
+.sms:hover {
+    background-color: #29a0d3;
+}
+
+.email:hover {
+    background-color: #357ae8;
+}
+
+.bluetooth:hover {
+    background-color: #166ab6;
+}
+
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* PDF Container Styles */
+.pdf-container {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.pdf-container h3 {
+    margin-bottom: 20px;
+}
+
+.pdf-container iframe {
+    border: none;
+}
+
+.share-buttons {
+    margin-top: 20px;
+}
+
+.share-buttons button {
+    margin: 5px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.share-buttons button:hover {
+    background-color: #0056b3;
+}
+
+.item {
+    margin: 20px;
+}
+.flex-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.question {
+    flex: 1;
+}
+.options {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.options label, .options input {
+    margin-left: 5px;
+}
+.container {
+    display: inline-block; /* Display container as an inline-block element */
+    text-align: left; /* Left align content within the container */
+}
+
+.inspection-form {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 90%;
+    max-width: 800px;
+}
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="submit"],
+.button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #00ff11; 
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+#weatherWidget {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 5px;
+    max-width: 450px;
+    margin: 5px auto;
+    text-align: center;
+    justify-content: center;
+}
+
+input[type="submit"]:hover,
+.button:hover {
+    background-color: #51ff74; /* Lighter shade of orange on hover */
+}
+
+.button-container {
+    text-align: center;
+}
+button {
+    background-color: #00065f; /* Orange color */
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: #140087; /* Lighter shade of green on hover */
+}
+.container {
+    display: inline-block; /* Display container as an inline-block element */
+    text-align: left; /* Left align content within the container */
+}

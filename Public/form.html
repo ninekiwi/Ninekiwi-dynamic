@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey & Inspection Form - NineKiwi</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <img src="/round-icon.png" alt="Round Icon" class="header-icon">
+            <div>
+                <h1>Welcome to NineKiwi</h1>
+                <p>Surveying Success, Inspecting Quality<br>Every Survey Counts, Every Inspection Matters</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="service.html">Service</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <section>
+            <h2>Survey & Inspection Form</h2>
+            <div class="form-container">
+                <form id="surveyForm">
+                    <div class="container">
+                        <form name="inspection-form" id="inspectionForm">
+                                    <div class="item">
+                                        <div style="background-color: #00065f; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 9px; margin-top: 9px;">
+                                            <h1 style="color: #ffffff; background-color: #00065f; padding-top: 9px;">Construction Inspection and Survey Form</h1>
+                                            <br>
+                                        </div>
+                                        <div class="item" style="background-color: #ffffff; ">
+                                            <ul>
+                                                <a href="Forminfo.html"><h4> Click here to access detail form and learn more about the various terminologies used in it.</h4></a>
+</li>
+                                            </ul>
+                                        </div>
+                                        <div class="container">
+                                            <p id="dateTime" name="Date-Time" style="color: #00065f; font-weight: bold;"></p>
+                                        </div>
+                                        <br>
+                                        <div style="text-align: center;"  class="item">
+                                            <div id="weatherWidget" class="weather-widget">
+                                                <h2>Weather Widget</h2>
+                                                <div id="weatherData"></div>
+                                                <div id="manualWeather">
+                                                    <input type="text" name="Weater-City" id="cityInput" placeholder="Enter site city name">
+                                                    <button type="button" onclick="fetchWeatherForCity()">Weather Information</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div>
+                                            <h3 style="color: #aaf2ff;">Prepared by: <input type="text" name="preparedBy" required></h3>
+                                            <h3 style="color: #aaf2ff;">Site Name & Location:<input type="text" name="SiteAddress" required></h3>
+                                            <br>
+                                            <br>
+                                            <h1 style="color: #aaf2ff;"><b>General Notes</b></h1>
+                                            <h3 style="color: #b3ff84;">Tenant Protection Inspection</h3>
+                                            <input type="file" id="tenantProtection" name="tenantProtection-images" accept="image/*" multiple>
+                                            <div id="imagePreviews" style="display: flex; flex-wrap: wrap;">please capyure square pics</div>
+                                            <textarea id="tenantProtection" name="tenantProtection" placeholder="Description"></textarea>
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <br>
+                                        <h1 style="color: #b3ff84;"><b>Survey</b></h1>
+                                        <br>
+                                        <div class="flex-container">
+                                            <h3 class="question" name="Any Accidents Today?">1. Any Accidents Today?</h3>
+                                            <div class="options">
+                                                <h4>
+                                                    <label for="accidents_yes">Yes</label>
+                                                    <input type="radio" id="accidents_yes" name="accidents" value="yes" oninput="toggleDescription('accidentsDescription', this)">
+                                                    <label for="accidents_no">No</label>
+                                                    <input type="radio" id="accidents_no" name="accidents" value="no" oninput="toggleDescription('accidentsDescription', this)">
+                                                    <label for="accidents_na">N/A</label>
+                                                    <input type="radio" id="accidents_na" name="accidents" value="NA" oninput="toggleDescription('accidentsDescription', this)" checked>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <textarea id="accidentsDescription" name="accidentsDescription" placeholder="Description" class="description-field"></textarea>
+                                        <br>
+                                        <div class="flex-container">
+                                            <h3 class="question">2. Any schedule delays occur?</h3>
+                                            <div class="options">
+                                                <h4>
+                                                    <label for="delays_yes">Yes</label>
+                                                    <input type="radio" id="delays_yes" name="delays" value="yes" oninput="toggleDescription('delaysDescription', this)">
+                                                    <label for="delays_no">No</label>
+                                                    <input type="radio" id="delays_no" name="delays" value="no" oninput="toggleDescription('delaysDescription', this)">
+                                                    <label for="delays_na">N/A</label>
+                                                    <input type="radio" id="delays_na" name="delays" value="NA" oninput="toggleDescription('delaysDescription', this)" checked>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <textarea id="delaysDescription" name="delaysDescription" placeholder="Description" class="description-field"></textarea>
+                                        <br>
+                                        <div class="flex-container">
+                                            <h3 class="question">3. Did weather cause any delays?</h3>
+                                            <div class="options">
+                                                <h4>
+                                                    <label for="weatherDelays_yes">Yes</label>
+                                                    <input type="radio" id="weatherDelays_yes" name="weatherDelays" value="yes" oninput="toggleDescription('weatherDelaysDescription', this)">
+                                                    <label for="weatherDelays_no">No</label>
+                                                    <input type="radio" id="weatherDelays_no" name="weatherDelays" value="no" oninput="toggleDescription('weatherDelaysDescription', this)">
+                                                    <label for="weatherDelays_na">N/A</label>
+                                                    <input type="radio" id="weatherDelays_na" name="weatherDelays" value="NA" oninput="toggleDescription('weatherDelaysDescription', this)" checked>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <textarea id="weatherDelaysDescription" name="weatherDelaysDescription" placeholder="Description" class="description-field"></textarea>
+                                        <br>
+                                        <div class="flex-container">
+                                            <h3 class="question">4. Any visitors on site?</h3>
+                                            <div class="options">
+                                                <h4>
+                                                    <label for="visitor_yes">Yes</label>
+                                                    <input type="radio" id="visitor_yes" name="visitor" value="yes" oninput="toggleDescription('visitorsDescription', this)">
+                                                    <label for="visitor_no">No</label>
+                                                    <input type="radio" id="visitor_no" name="visitor" value="no" oninput="toggleDescription('visitorsDescription', this)">
+                                                    <label for="visitor_na">N/A</label>
+                                                    <input type="radio" id="visitor_na" name="visitor" value="NA" oninput="toggleDescription('visitorsDescription', this)" checked>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <textarea id="visitorsDescription" name="visitorsDescription" placeholder="Description" class="description-field"></textarea>
+                                        <br>
+                                        <div class="flex-container">
+                                            <h3 class="question">5. Any areas that can't be worked on?</h3>
+                                            <div class="options">
+                                                <h4>
+                                                    <label for="area_yes">Yes</label>
+                                                    <input type="radio" id="area_yes" name="area" value="yes" oninput="toggleDescription('areaDescription', this)">
+                                                    <label for="area_no">No</label>
+                                                    <input type="radio" id="area_no" name="area" value="no" oninput="toggleDescription('areaDescription', this)">
+                                                    <label for="area_na">N/A</label>
+                                                    <input type="radio" id="area_na" name="area" value="NA" oninput="toggleDescription('areaDescription', this)" checked>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <textarea id="areaDescription" name="areaDescription" placeholder="Description" class="description-field"></textarea>
+                                        <br>
+                                        <div class="flex-container">
+                                            <h3 class="question">6. Any equipment rented on site?</h3>
+                                            <div class="options">
+                                                <h4>
+                                                    <label for="equipment_yes">Yes</label>
+                                                    <input type="radio" id="equipment_yes" name="equipment" value="yes" oninput="toggleDescription('equipmentDescription', this)">
+                                                    <label for="equipment_no">No</label>
+                                                    <input type="radio" id="equipment_no" name="equipment" value="no" oninput="toggleDescription('equipmentDescription', this)">
+                                                    <label for="equipment_na">N/A</label>
+                                                    <input type="radio" id="equipment_na" name="equipment" value="NA" oninput="toggleDescription('equipmentDescription', this)" checked>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <textarea id="equipmentDescription" name="equipmentDescription" placeholder="Description" class="description-field"></textarea>
+                                        <br>
+                                        <br>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <br>
+                                    <h1 style="color: #aaf2ff;"><b>&nbsp;&nbsp;Project Safety Checklist</b></h1>
+                                    <br>
+                                    <h1 style="color: #b3ff84;">1. Exterior of Project</h1>
+                                    <br>
+                                    <div class="flex-container">
+                                        <h3 class="question">1.1 Are there any potential hazards outside the work area?</h3>
+                                        <div class="options">
+                                            <h4>
+                                                <label for="extHazard_yes">Yes</label>
+                                                <input type="radio" id="extHazard_yes" name="extHazard" value="yes" oninput="toggleDescription('extHazardDescription', this)">
+                                                <label for="extHazard_no">No</label>
+                                                <input type="radio" id="extHazard_no" name="extHazard" value="no" oninput="toggleDescription('extHazardDescription', this)">
+                                                <label for="extHazard_na">N/A</label>
+                                                <input type="radio" id="extHazard_na" name="extHazard" value="NA" oninput="toggleDescription('extHazardDescription', this)" checked>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <textarea id="extHazardDescription" name="extHazardDescription" placeholder="Description" class="description-field"></textarea>
+                                    <br>
+                                    <div class="flex-container">
+                                        <h3 class="question">1.2 Are exits free of any debris?</h3>
+                                        <div class="options">
+                                            <h4>
+                                                <label for="exitDebris_yes">Yes</label>
+                                                <input type="radio" id="exitDebris_yes" name="exitDebris" value="yes" oninput="toggleDescription('exitDebrisDescription', this)">
+                                                <label for="exitDebris_no">No</label>
+                                                <input type="radio" id="exitDebris_no" name="exitDebris" value="no" oninput="toggleDescription('exitDebrisDescription', this)">
+                                                <label for="exitDebris_na">N/A</label>
+                                                <input type="radio" id="exitDebris_na" name="exitDebris" value="NA" oninput="toggleDescription('exitDebrisDescription', this)" checked>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <textarea id="exitDebrisDescription" name="exitDebrisDescription" placeholder="Description" class="description-field"></textarea>
+                                    <br>
+                                    <div class="flex-container">
+                                        <h3 class="question">1.3 Are sidewalks safe and secure?</h3>
+                                        <div class="options">
+                                            <h4>
+                                                <label for="sidewalkSafety_yes">Yes</label>
+                                                <input type="radio" id="sidewalkSafety_yes" name="sidewalkSafety" value="yes" oninput="toggleDescription('sidewalkSafetyDescription', this)">
+                                                <label for="sidewalkSafety_no">No</label>
+                                                <input type="radio" id="sidewalkSafety_no" name="sidewalkSafety" value="no" oninput="toggleDescription('sidewalkSafetyDescription', this)">
+                                                <label for="sidewalkSafety_na">N/A</label>
+                                                <input type="radio" id="sidewalkSafety_na" name="sidewalkSafety" value="NA" oninput="toggleDescription('sidewalkSafetyDescription', this)" checked>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <textarea id="sidewalkSafetyDescription" name="sidewalkSafetyDescription" placeholder="Description" class="description-field"></textarea>
+                                    <br>
+                                    <br>
+                                    <h1 style="color: #b3ff84;">2. Interior of Project</h1>
+                                    <br>
+                                    <div class="flex-container">
+                                        <h3 class="question">2.1 Is the work area free from obstruction?</h3>
+                                        <div class="options">
+                                            <h4>
+                                                <label for="workObstruction_yes">Yes</label>
+                                                <input type="radio" id="workObstruction_yes" name="workObstruction" value="yes" oninput="toggleDescription('workObstructionDescription', this)">
+                                                <label for="workObstruction_no">No</label>
+                                                <input type="radio" id="workObstruction_no" name="workObstruction" value="no" oninput="toggleDescription('workObstructionDescription', this)">
+                                                <label for="workObstruction_na">N/A</label>
+                                                <input type="radio" id="workObstruction_na" name="workObstruction" value="NA" oninput="toggleDescription('workObstructionDescription', this)" checked>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <textarea id="workObstructionDescription" name="workObstructionDescription" placeholder="Description" class="description-field"></textarea>
+                                    <br>
+                                    <div class="flex-container">
+                                        <h3 class="question">2.2 Are electrical panels covered and protected?</h3>
+                                        <div class="options">
+                                            <h4>
+                                                <label for="electricalPanels_yes">Yes</label>
+                                                <input type="radio" id="electricalPanels_yes" name="electricalPanels" value="yes" oninput="toggleDescription('electricalPanelsDescription', this)">
+                                                <label for="electricalPanels_no">No</label>
+                                                <input type="radio" id="electricalPanels_no" name="electricalPanels" value="no" oninput="toggleDescription('electricalPanelsDescription', this)">
+                                                <label for="electricalPanels_na">N/A</label>
+                                                <input type="radio" id="electricalPanels_na" name="electricalPanels" value="NA" oninput="toggleDescription('electricalPanelsDescription', this)" checked>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <textarea id="electricalPanelsDescription" name="electricalPanelsDescription" placeholder="Description" class="description-field"></textarea>
+                                    <br>
+                                    <div class="flex-container">
+                                        <h3 class="question">2.3 Is the area free of loose cables and wiring?</h3>
+                                        <div class="options">
+                                            <h4>
+                                                <label for="looseCables_yes">Yes</label>
+                                                <input type="radio" id="looseCables_yes" name="looseCables" value="yes" oninput="toggleDescription('looseCablesDescription', this)">
+                                                <label for="looseCables_no">No</label>
+                                                <input type="radio" id="looseCables_no" name="looseCables" value="no" oninput="toggleDescription('looseCablesDescription', this)">
+                                                <label for="looseCables_na">N/A</label>
+                                                <input type="radio" id="looseCables_na" name="looseCables" value="NA" oninput="toggleDescription('looseCablesDescription', this)" checked>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <textarea id="looseCablesDescription" name="looseCablesDescription" placeholder="Description" class="description-field"></textarea>
+                                    <br>
+                                    <br>
+                                    <h1 style="color: #b3ff84;">3. Materials Storage</h1>
+                                    <br>
+                                    <div class="flex-container">
+                                        <h3 class="question">3.1 Are materials stored properly?</h3>
+                                        <div class="options">
+                                            <h4>
+                                                <label for="materialsStored_yes">Yes</label>
+                                                <input type="radio" id="materialsStored_yes" name="materialsStored" value="yes" oninput="toggleDescription('materialsStoredDescription', this)">
+                                                <label for="materialsStored_no">No</label>
+                                                <input type="radio" id="materialsStored_no" name="materialsStored" value="no" oninput="toggleDescription('materialsStoredDescription', this)">
+                                                <label for="materialsStored_na">N/A</label>
+                                                <input type="radio" id="materialsStored_na" name="materialsStored" value="NA" oninput="toggleDescription('materialsStoredDescription', this)" checked>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <textarea id="materialsStoredDescription" name="materialsStoredDescription" placeholder="Description" class="description-field"></textarea>
+                                    <br>
+                                    <div class="flex-container">
+                                        <h3 class="question">3.2 Are hazardous materials stored safely?</h3>
+                                        <div class="options">
+                                            <h4>
+                                                <label for="hazardousMaterials_yes">Yes</label>
+                                                <input type="radio" id="hazardousMaterials_yes" name="hazardousMaterials" value="yes" oninput="toggleDescription('hazardousMaterialsDescription', this)">
+                                                <label for="hazardousMaterials_no">No</label>
+                                                <input type="radio" id="hazardousMaterials_no" name="hazardousMaterials" value="no" oninput="toggleDescription('hazardousMaterialsDescription', this)">
+                                                <label for="hazardousMaterials_na">N/A</label>
+                                                <input type="radio" id="hazardousMaterials_na" name="hazardousMaterials" value="NA" oninput="toggleDescription('hazardousMaterialsDescription', this)" checked>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <textarea id="hazardousMaterialsDescription" name="hazardousMaterialsDescription" placeholder="Description" class="description-field"></textarea>
+                                    <br>
+                                    <div class="flex-container">
+                                        <h3 class="question">3.3 Are flammable materials stored in proper containers?</h3>
+                                        <div class="options">
+                                            <h4>
+                                                <label for="flammableMaterials_yes">Yes</label>
+                                                <input type="radio" id="flammableMaterials_yes" name="flammableMaterials" value="yes" oninput="toggleDescription('flammableMaterialsDescription', this)">
+                                                <label for="flammableMaterials_no">No</label>
+                                                <input type="radio" id="flammableMaterials_no" name="flammableMaterials" value="no" oninput="toggleDescription('flammableMaterialsDescription', this)">
+                                                <label for="flammableMaterials_na">N/A</label>
+                                                <input type="radio" id="flammableMaterials_na" name="flammableMaterials" value="NA" oninput="toggleDescription('flammableMaterialsDescription', this)" checked>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <textarea id="flammableMaterialsDescription" name="flammableMaterialsDescription" placeholder="Description"  class="description-field"></textarea>
+                                    <br>
+                                    <br>
+                                    <h1 style="color: #b3ff84;">4. Safety Equipment</h1>
+                                    <br>
+                                    <div class="flex-container">
+                                        <h3 class="question">4.1 Are first aid kits available and accessible?</h3>
+                                        <div class="options">
+                                            <h4>
+                                                <label for="firstAid_yes">Yes</label>
+                                                <input type="radio" id="firstAid_yes" name="firstAid" value="yes" oninput="toggleDescription('firstAidDescription', this)">
+                                                <label for="firstAid_no">No</label>
+                                                <input type="radio" id="firstAid_no" name="firstAid" value="no" oninput="toggleDescription('firstAidDescription', this)">
+                                                <label for="firstAid_na">N/A</label>
+                                                <input type="radio" id="firstAid_na" name="firstAid" value="NA" oninput="toggleDescription('firstAidDescription', this)" checked>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <textarea id="firstAidDescription" name="firstAidDescription" placeholder="Description" class="description-field"></textarea>
+                                    <br>
+                                    <div class="flex-container">
+                                        <h3 class="question">4.2 Are fire extinguishers visible and accessible?</h3>
+                                        <div class="options">
+                                            <h4>
+                                                <label for="fireExtinguisher_yes">Yes</label>
+                                                <input type="radio" id="fireExtinguisher_yes" name="fireExtinguisher" value="yes" oninput="toggleDescription('fireExtinguisherDescription', this)">
+                                                <label for="fireExtinguisher_no">No</label>
+                                                <input type="radio" id="fireExtinguisher_no" name="fireExtinguisher" value="no" oninput="toggleDescription('fireExtinguisherDescription', this)">
+                                                <label for="fireExtinguisher_na">N/A</label>
+                                                <input type="radio" id="fireExtinguisher_na" name="fireExtinguisher" value="NA" oninput="toggleDescription('fireExtinguisherDescription', this)" checked>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <textarea id="fireExtinguisherDescription" name="fireExtinguisherDescription" placeholder="Description" class="description-field"></textarea>
+                                    <br>
+                                    <div class="flex-container">
+                                        <h3 class="question">4.3 Are personal protective equipment (PPE) kits available for workers?</h3>
+                                        <div class="options">
+                                            <h4>
+                                                <label for="ppe_yes">Yes</label>
+                                                <input type="radio" id="ppe_yes" name="ppe" value="yes" oninput="toggleDescription('ppeDescription', this)">
+                                                <label for="ppe_no">No</label>
+                                                <input type="radio" id="ppe_no" name="ppe" value="no" oninput="toggleDescription('ppeDescription', this)">
+                                                <label for="ppe_na">N/A</label>
+                                                <input type="radio" id="ppe_na" name="ppe" value="NA" oninput="toggleDescription('ppeDescription', this)" checked>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <textarea id="ppeDescription" name="ppeDescription" placeholder="Description" class="description-field"></textarea>
+                                    <br>
+                                    <br>
+                                    <h1 style="color: #b3ff84;">5. General Conditions</h1>
+                                    <br>
+                                    <div class="flex-container">
+                                        <h3 class="question">5.1 Is the site kept clean and free from litter?</h3>
+                                        <div class="options">
+                                            <h4>
+                                                <label for="siteClean_yes">Yes</label>
+                                                <input type="radio" id="siteClean_yes" name="siteClean" value="yes" oninput="toggleDescription('siteCleanDescription', this)">
+                                                <label for="siteClean_no">No</label>
+                                                <input type="radio" id="siteClean_no" name="siteClean" value="no" oninput="toggleDescription('siteCleanDescription', this)">
+                                                <label for="siteClean_na">N/A</label>
+                                                <input type="radio" id="siteClean_na" name="siteClean" value="NA" oninput="toggleDescription('siteCleanDescription', this)" checked>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <textarea id="siteCleanDescription" name="siteCleanDescription" placeholder="Description" class="description-field"></textarea>
+                                    <br>
+                                    <div class="flex-container">
+                                        <h3 class="question">5.2 Are there signs indicating restricted areas?</h3>
+                                        <div class="options">
+                                            <h4>
+                                                <label for="restrictedSigns_yes">Yes</label>
+                                                <input type="radio" id="restrictedSigns_yes" name="restrictedSigns" value="yes" oninput="toggleDescription('restrictedSignsDescription', this)">
+                                                <label for="restrictedSigns_no">No</label>
+                                                <input type="radio" id="restrictedSigns_no" name="restrictedSigns" value="no" oninput="toggleDescription('restrictedSignsDescription', this)">
+                                                <label for="restrictedSigns_na">N/A</label>
+                                                <input type="radio" id="restrictedSigns_na" name="restrictedSigns" value="NA" oninput="toggleDescription('restrictedSignsDescription', this)" checked>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <textarea id="restrictedSignsDescription" name="restrictedSignsDescription" placeholder="Description" class="description-field"></textarea>
+                                    <br>
+                                    <div class="flex-container">
+                                        <h3 class="question">5.3 Are all workers wearing appropriate identification badges?</h3>
+                                        <div class="options">
+                                            <h4>
+                                                <label for="workerID_yes">Yes</label>
+                                                <input type="radio" id="workerID_yes" name="workerID" value="yes" oninput="toggleDescription('workerIDDescription', this)">
+                                                <label for="workerID_no">No</label>
+                                                <input type="radio" id="workerID_no" name="workerID" value="no" oninput="toggleDescription('workerIDDescription', this)">
+                                                <label for="workerID_na">N/A</label>
+                                                <input type="radio" id="workerID_na" name="workerID" value="NA" oninput="toggleDescription('workerIDDescription', this)" checked>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <textarea id="workerIDDescription" name="workerIDDescription" placeholder="Description" class="description-field"></textarea>
+                                    <br>
+                                    <div class="flex-container">
+                                        <h3 class="question">5.4 Is the site secure from unauthorized access?</h3>
+                                        <div class="options">
+                                            <h4>
+                                                <label for="siteSecure_yes">Yes</label>
+                                                <input type="radio" id="siteSecure_yes" name="siteSecure" value="yes" oninput="toggleDescription('siteSecureDescription', this)">
+                                                <label for="siteSecure_no">No</label>
+                                                <input type="radio" id="siteSecure_no" name="siteSecure" value="no" oninput="toggleDescription('siteSecureDescription', this)">
+                                                <label for="siteSecure_na">N/A</label>
+                                                <input type="radio" id="siteSecure_na" name="siteSecure" value="NA" oninput="toggleDescription('siteSecureDescription', this)" checked>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <textarea id="siteSecureDescription" name="siteSecureDescription" placeholder="Description" class="description-field"></textarea>
+                                    <br>
+                                    <br>
+                                    <h1 style="color: #b3ff84;">6. Emergency Procedures</h1>
+                                    <br>
+                                    <div class="flex-container">
+                                        <h3 class="question">6.1 Are emergency exit routes clearly marked?</h3>
+                                        <div class="options">
+                                            <h4>
+                                                <label for="emergencyRoutes_yes">Yes</label>
+                                                <input type="radio" id="emergencyRoutes_yes" name="emergencyRoutes" value="yes" oninput="toggleDescription('emergencyRoutesDescription', this)">
+                                                <label for="emergencyRoutes_no">No</label>
+                                                <input type="radio" id="emergencyRoutes_no" name="emergencyRoutes" value="no" oninput="toggleDescription('emergencyRoutesDescription', this)">
+                                                <label for="emergencyRoutes_na">N/A</label>
+                                                <input type="radio" id="emergencyRoutes_na" name="emergencyRoutes" value="NA" oninput="toggleDescription('emergencyRoutesDescription', this)" checked>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <textarea id="emergencyRoutesDescription" name="emergencyRoutesDescription" placeholder="Description" class="description-field"></textarea>
+                                    <br>
+                                    <div class="flex-container">
+                                        <h3 class="question">6.2 Are emergency contact numbers posted and visible?</h3>
+                                        <div class="options">
+                                            <h4>
+                                                <label for="emergencyNumbers_yes">Yes</label>
+                                                <input type="radio" id="emergencyNumbers_yes" name="emergencyNumbers" value="yes" oninput="toggleDescription('emergencyNumbersDescription', this)">
+                                                <label for="emergencyNumbers_no">No</label>
+                                                <input type="radio" id="emergencyNumbers_no" name="emergencyNumbers" value="no" oninput="toggleDescription('emergencyNumbersDescription', this)">
+                                                <label for="emergencyNumbers_na">N/A</label>
+                                                <input type="radio" id="emergencyNumbers_na" name="emergencyNumbers" value="NA" oninput="toggleDescription('emergencyNumbersDescription', this)" checked>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <textarea id="emergencyNumbersDescription" name="emergencyNumbersDescription" placeholder="Description" class="description-field"></textarea>
+                                    <br>
+                                    <div class="flex-container">
+                                        <h3 class="question">6.3 Are workers familiar with the emergency procedures?</h3>
+                                        <div class="options">
+                                            <h4>
+                                                <label for="emergencyFamiliar_yes">Yes</label>
+                                                <input type="radio" id="emergencyFamiliar_yes" name="emergencyFamiliar" value="yes" oninput="toggleDescription('emergencyFamiliarDescription', this)">
+                                                <label for="emergencyFamiliar_no">No</label>
+                                                <input type="radio" id="emergencyFamiliar_no" name="emergencyFamiliar" value="no" oninput="toggleDescription('emergencyFamiliarDescription', this)">
+                                                <label for="emergencyFamiliar_na">N/A</label>
+                                                <input type="radio" id="emergencyFamiliar_na" name="emergencyFamiliar" value="NA" oninput="toggleDescription('emergencyFamiliarDescription', this)" checked>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <textarea id="emergencyFamiliarDescription" name="emergencyFamiliarDescription" placeholder="Description" class="description-field"></textarea>
+                                    <br>
+                                    <br>
+                                    <h1 style="color: #b3ff84;">7. Additional Observations</h1>
+                                    <br>
+                                    <textarea id="additionalObservations" name="additionalObservations" placeholder="Additional observations or comments"></textarea>
+                                    <br>
+                                    <br>
+                                    <div class="button-container">
+                                        <button id="submitBtn" type="submit">Submit</button>
+                                    </div>
+                        </form>
+            </div>
+
+            <div id="pdfContainer" class="pdf-container" style="display:none;">
+                <h3>Your PDF is ready!</h3>
+                <iframe id="pdfFrame" src="" width="100%" height="600px"></iframe>
+                <div class="share-buttons">
+                    <button id="shareWhatsApp">Share on WhatsApp</button>
+                    <button id="shareEmail">Share via Email</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+    <footer>
+        <a href="mailto:hello@ninekiwi.com" class="email-button">Send Us an Email</a>
+        <p> <a href="http://ninekiwi.com/" class="copy">&copy;  NineKiwi.com</a></p>
+    </footer>
+
+    <!-- JavaScript to Update Year and Handle Form Submission -->
+    <script>
+        function fetchWeatherForCity() {
+        const cityName = document.getElementById("cityInput").value.trim();
+        if (cityName === "") {
+            showError("Please enter a city name.");
+            return;
+        }
+        const apiKey = '376094c3e6045254d196c1dabbe689c5';
+        const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=imperial&appid=${apiKey}`;
+    
+        // Fetch weather data for the city
+        fetch(weatherUrl)
+            .then(response => response.json())
+            .then(weatherData => {
+                if (weatherData.cod !== 200) {
+                    showError(`City not found: ${weatherData.message}`);
+                    return;
+                }
+                const city = weatherData.name;
+                updateWeather(city, weatherData);
+            })
+            .catch(error => {
+                console.error("Error fetching weather data:", error);
+                showError("Failed to fetch weather data.");
+            });
+    }
+    
+    function updateWeather(city, weatherData) {
+        const temperature = weatherData.main.temp;
+        const windSpeed = weatherData.wind.speed;
+        const humidity = weatherData.main.humidity;
+        const weatherDescription = weatherData.weather[0].description;
+    
+        const weatherElement = document.getElementById("weatherData");
+        weatherElement.innerHTML = `
+            <p>Temperature: ${temperature}°F</p>
+            <p>Wind Speed: ${windSpeed} mph</p>
+            <p>Humidity: ${humidity}%</p>
+            <p>Weather: ${weatherDescription}</p>
+        `;
+    }
+    
+    function showError(message) {
+        const weatherElement = document.getElementById("weatherData");
+        weatherElement.innerHTML = `<p>${message}</p>`;
+    }
+
+    function toggleDescription(descriptionId, radio) {
+        const description = document.getElementById(descriptionId);
+        description.style.display = radio.value === 'NA' ? 'none' : 'block';
+    }
+
+        
+    </script>
+    <script>
+    document.getElementById('surveyForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        const { jsPDF } = window.jspdf;
+
+        // Function to get the value of an input field by name
+        const getFieldValue = (name) => document.querySelector(`[name="${name}"]`)?.value || '';
+
+        // Function to get the value of a selected radio button
+        const getRadioValue = (name) => document.querySelector(`input[name="${name}"]:checked`)?.value || '';
+
+        // Function to get the description value
+        const getDescription = (id) => document.getElementById(id)?.value || '';
+
+        // Function to get weather information
+        const getWeatherInfo = () => {
+            const weatherData = document.getElementById('weatherData');
+            return weatherData ? weatherData.innerText : 'Weather information not available';
+        };
+
+        // Function to convert file to base64
+        const fileToBase64 = (file) => {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = (error) => reject(error);
+            });
+        };
+
+        // Get uploaded images
+        const imageInput = document.getElementById('tenantProtection');
+        const imageFiles = imageInput.files;
+        const imageBase64Promises = Array.from(imageFiles).map(file => 
+            new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const resizedImage = resizeImage(img, 800, 600); // Resize to max 800x600
+                        resolve(resizedImage);
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            })
+        );
+        const imageBase64Array = await Promise.all(imageBase64Promises);
+
+        // Collect form data with sections
+        const formData = [
+            {
+                section: "General Information",
+                items: [
+                    { question: "Prepared by", value: getFieldValue('preparedBy'), description: "" },
+                    { question: "Site Address and Location", value: getFieldValue('SiteAddress'), description: "" },
+                    { question: "Weather City", value: getFieldValue('Weater-City'), description: "" },
+                    { question: "Weather Information", value: getWeatherInfo(), description: "" },
+                    { question: "Tenant Protection", value: getFieldValue('tenantProtection'), description: "" }
+                ]
+            },
+                {
+                    section: "Survey",
+                    items: [
+                        { question: "Any Accidents Today?", value: getRadioValue('accidents'), description: getDescription('accidentsDescription') },
+                        { question: "Any schedule delays occur?", value: getRadioValue('delays'), description: getDescription('delaysDescription') },
+                        { question: "Did weather cause any delays?", value: getRadioValue('weatherDelays'), description: getDescription('weatherDelaysDescription') },
+                        { question: "Any visitors on site?", value: getRadioValue('visitor'), description: getDescription('visitorsDescription') },
+                        { question: "Any areas that can't be worked on?", value: getRadioValue('area'), description: getDescription('areaDescription') },
+                        { question: "Any equipment rented on site?", value: getRadioValue('equipment'), description: getDescription('equipmentDescription') }
+                    ]
+                },
+                {
+                    section: "Exterior of Project",
+                    items: [
+                        { question: "Are there any potential hazards outside the work area?", value: getRadioValue('extHazard'), description: getDescription('extHazardDescription') },
+                        { question: "Are exits free of any debris?", value: getRadioValue('exitDebris'), description: getDescription('exitDebrisDescription') },
+                        { question: "Are sidewalks safe and secure?", value: getRadioValue('sidewalkSafety'), description: getDescription('sidewalkSafetyDescription') }
+                    ]
+                },
+                {
+                    section: "Interior of Project",
+                    items: [
+                        { question: "Is the work area free from obstruction?", value: getRadioValue('workObstruction'), description: getDescription('workObstructionDescription') },
+                        { question: "Are electrical panels covered and protected?", value: getRadioValue('electricalPanels'), description: getDescription('electricalPanelsDescription') },
+                        { question: "Is the area free of loose cables and wiring?", value: getRadioValue('looseCables'), description: getDescription('looseCablesDescription') }
+                    ]
+                },
+                {
+                    section: "Materials Storage",
+                    items: [
+                        { question: "Are materials stored properly?", value: getRadioValue('materialsStored'), description: getDescription('materialsStoredDescription') },
+                        { question: "Are hazardous materials stored safely?", value: getRadioValue('hazardousMaterials'), description: getDescription('hazardousMaterialsDescription') },
+                        { question: "Are flammable materials stored in proper containers?", value: getRadioValue('flammableMaterials'), description: getDescription('flammableMaterialsDescription') }
+                    ]
+                },
+                {
+                    section: "Safety Equipment",
+                    items: [
+                        { question: "Are first aid kits available and accessible?", value: getRadioValue('firstAid'), description: getDescription('firstAidDescription') },
+                        { question: "Are fire extinguishers visible and accessible?", value: getRadioValue('fireExtinguisher'), description: getDescription('fireExtinguisherDescription') },
+                        { question: "Are personal protective equipment (PPE) kits available for workers?", value: getRadioValue('ppe'), description: getDescription('ppeDescription') }
+                    ]
+                },
+                {
+                    section: "General Conditions",
+                    items: [
+                        { question: "Is the site kept clean and free from litter?", value: getRadioValue('siteClean'), description: getDescription('siteCleanDescription') },
+                        { question: "Are there signs indicating restricted areas?", value: getRadioValue('restrictedSigns'), description: getDescription('restrictedSignsDescription') },
+                        { question: "Are all workers wearing appropriate identification badges?", value: getRadioValue('workerID'), description: getDescription('workerIDDescription') },
+                        { question: "Is the site secure from unauthorized access?", value: getRadioValue('siteSecure'), description: getDescription('siteSecureDescription') }
+                    ]
+                },
+                {
+                    section: "Emergency Procedures",
+                    items: [
+                        { question: "Are emergency exit routes clearly marked?", value: getRadioValue('emergencyRoutes'), description: getDescription('emergencyRoutesDescription') },
+                        { question: "Are emergency contact numbers posted and visible?", value: getRadioValue('emergencyNumbers'), description: getDescription('emergencyNumbersDescription') },
+                        { question: "Are workers familiar with the emergency procedures?", value: getRadioValue('emergencyFamiliar'), description: getDescription('emergencyFamiliarDescription') }
+                    ]
+                },
+                {
+                    section: "Additional Observations",
+                    items: [
+                        { question: "Additional Observations", value: "", description: getDescription('additionalObservations') }
+                    ]
+                }
+            ];
+
+        // Initialize jsPDF document
+        const doc = new jsPDF();
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(18);
+        doc.text('Survey & Inspection Report', 10, 10);
+
+        // Add current date and time
+        const currentDate = new Date().toLocaleString();
+        doc.setFontSize(12);
+        doc.text(`Report generated on: ${currentDate}`, 10, 20);
+
+        let yPos = 30;
+
+        // Function to check and add new page if needed
+        function checkAndAddPage(requiredSpace) {
+            if (yPos + requiredSpace > doc.internal.pageSize.height - 20) {
+                doc.addPage();
+                yPos = 20;
+            }
+        }
+
+        let haveImages = false;
+
+        // Iterate through sections
+        formData.forEach((section, sectionIndex) => {
+            // Add section title
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(14);
+            doc.text(section.section, 10, yPos);
+            yPos += 10;
+
+            if (sectionIndex === 0) {
+                // Special handling for General Information section
+                doc.autoTable({
+                    head: [["Question", "Information"]],
+                    body: section.items.map(item => [item.question, item.value]),
+                    startY: yPos,
+                    styles: { fontSize: 10, cellPadding: 2 },
+                    columnStyles: {
+                        0: { cellWidth: 80 },
+                        1: { cellWidth: 110 }
+                    },
+                    headStyles: { fillColor: [40, 40, 40], textColor: [255, 255, 255] },
+                    bodyStyles: { fillColor: [245, 245, 245], textColor: [40, 40, 40] },
+                    alternateRowStyles: { fillColor: [255, 255, 255] },
+                    margin: { top: 30 }
+                });
+
+
+                yPos = doc.lastAutoTable.finalY + 10;
+
+            // Add Tenant Protection Images
+            if (imageBase64Array.length > 0) {
+                checkAndAddPage(20); // Check if we need a new page for the images title
+                haveImages = true;
+
+                const imagesPerRow = 2;
+                const imageWidth = 80;
+                const imageHeight = 60;
+                const margin = 10;
+
+                for (let i = 0; i < imageBase64Array.length; i++) {
+                    if (i % imagesPerRow === 0) {
+                        checkAndAddPage(imageHeight + margin);
+                    }
+
+                    const xPos = 10 + (i % imagesPerRow) * (imageWidth + margin);
+                    doc.addImage(imageBase64Array[i], 'JPEG', xPos, yPos, imageWidth, imageHeight);
+
+                    if (i % imagesPerRow === imagesPerRow - 1 || i === imageBase64Array.length - 1) {
+                        yPos += imageHeight + margin;
+                    }
+                    
+                }
+
+                doc.addPage();
+                yPos = 20;
+          
+            }
+                
+            } else {
+                haveImages = false;
+
+                // For other sections, keep the three-column layout
+                const tableColumn = ["Question", "Response", "Description"];
+                const tableRows = section.items.map(item => [item.question, item.value, item.description]);
+
+                doc.autoTable({
+                    head: [tableColumn],
+                    body: tableRows,
+                    startY: yPos,
+                    styles: { fontSize: 8, cellPadding: 2 },
+                    columnStyles: {
+                        0: { cellWidth: 60 },
+                        1: { cellWidth: 60 },
+                        2: { cellWidth: 70 }
+                    },
+                    headStyles: { fillColor: [40, 40, 40], textColor: [255, 255, 255] },
+                    bodyStyles: { fillColor: [245, 245, 245], textColor: [40, 40, 40] },
+                    alternateRowStyles: { fillColor: [255, 255, 255] },
+                    margin: { top: 30 }
+                });
+
+            }
+
+            if(!haveImages){
+                yPos = doc.lastAutoTable.finalY + 10;
+            }
+
+            // Add a new page if we're near the bottom
+            if (yPos > 250) {
+                doc.addPage();
+                yPos = 20;
+            }
+        });
+
+        
+
+        // Generate the PDF file name with a timestamp
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        const pdfFileName = `survey_inspection_report-${timestamp}.pdf`;
+
+        // Generate the PDF as a Blob
+        const pdfBlob = doc.output('blob');
+
+        // Display the PDF
+        const pdfDataUri = doc.output('datauristring');
+        const pdfFrame = document.getElementById('pdfFrame');
+        pdfFrame.src = pdfDataUri;
+        
+        // Show the PDF container
+        document.getElementById('pdfContainer').style.display = 'block';
+
+        // Scroll to the PDF container
+        document.getElementById('pdfContainer').scrollIntoView({ behavior: 'smooth' });
+
+        // Save the PDF to the server
+        const relativePath = await savePdfToServer(pdfBlob, pdfFileName);
+
+        // Set up sharing buttons
+        setupShareButtons(relativePath, pdfFileName);
+    });
+
+    function resizeImage(img, maxWidth, maxHeight) {
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+            if (width > maxWidth) {
+                height *= maxWidth / width;
+                width = maxWidth;
+            }
+        } else {
+            if (height > maxHeight) {
+                width *= maxHeight / height;
+                height = maxHeight;
+            }
+        }
+
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        return canvas.toDataURL('image/jpeg', 0.7); // Reduce quality to 70%
+    }
+
+    function setupShareButtons(relativePath, pdfFileName) {
+        const whatsappButton = document.getElementById('shareWhatsApp');
+        const emailButton = document.getElementById('shareEmail');
+
+        const fullPath = `./uploads/${pdfFileName}`;
+
+        whatsappButton.addEventListener('click', function() {
+            const whatsappUrl = `https://wa.me/?text=Check out this survey report: ${encodeURIComponent(fullPath)}`;
+            console.log(whatsappUrl);
+            
+            window.open(whatsappUrl, '_blank');
+        });
+
+        emailButton.addEventListener('click', function() {
+            const emailSubject = 'Survey & Inspection Report';
+            const emailBody = `Please find the Survey & Inspection Report here: ${fullPath}`;
+            const mailtoLink = `mailto:?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            console.log(mailtoLink);
+            
+            window.location.href = mailtoLink;
+        });
+    }
+
+    async function savePdfToServer(pdfBlob, pdfFileName) {
+        const sendFormData = new FormData();
+        sendFormData.append('pdf', pdfBlob, pdfFileName);
+
+        await fetch('http://localhost:3000/save-pdf', {
+            method: 'POST',
+            body: sendFormData
+        })
+        .then(response => {
+            if (response.ok) {
+                const result = response.json();
+                console.log('PDF saved successfully on the server');
+                return result.relativePath;
+            } else {
+                throw new Error('Failed to save PDF on the server');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+    </script>
+    
+    <script>
+        document.getElementById('tenantProtection').addEventListener('change', function(event) {
+            const previewsContainer = document.getElementById('imagePreviews');
+            previewsContainer.innerHTML = ''; // Clear existing previews
+            const files = event.target.files;
+    
+            for (const file of files) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = e.target.result;
+                    imgElement.style.maxWidth = '150px';
+                    imgElement.style.height = 'auto';
+                    imgElement.style.border = '2px solid #ccc';
+                    imgElement.style.borderRadius = '5px';
+                    imgElement.style.objectFit = 'contain';
+                    imgElement.style.flexShrink = '0';
+                    previewsContainer.appendChild(imgElement);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+</script>
+</body>
+</html>
